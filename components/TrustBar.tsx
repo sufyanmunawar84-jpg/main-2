@@ -17,11 +17,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
-    if (reducedMotion) {
-      setCount(value);
-      return;
-    }
+    if (!inView || reducedMotion) return;
     const start = performance.now();
     const duration = 900;
     let frame = 0;
@@ -34,7 +30,7 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
     return () => cancelAnimationFrame(frame);
   }, [inView, reducedMotion, value]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return <span ref={ref}>{reducedMotion ? value : count}{suffix}</span>;
 }
 
 export function TrustBar() {

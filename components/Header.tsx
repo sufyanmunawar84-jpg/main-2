@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Bars3Icon, PhoneIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { navigation, siteConfig } from "@/lib/site";
 
 export function Brand({ light = false }: { light?: boolean }) {
   return (
-    <a href="/" className="inline-flex items-center gap-3" aria-label={`${siteConfig.name} home`}>
+    <Link href="/" className="inline-flex items-center gap-3" aria-label={`${siteConfig.name} home`}>
       <span
         aria-hidden="true"
         className="grid h-10 w-10 place-items-center rounded-[13px] bg-gradient-to-br from-blue-500 to-indigo-700 shadow-[0_8px_22px_rgba(23,92,255,.3)]"
@@ -16,7 +17,7 @@ export function Brand({ light = false }: { light?: boolean }) {
       <span className={`text-[17px] font-extrabold tracking-[-0.025em] ${light ? "text-white" : "text-[#0b1d3b]"}`}>
         Northstar<span className={light ? "text-blue-300" : "text-blue-600"}> Connect</span>
       </span>
-    </a>
+    </Link>
   );
 }
 
