@@ -7,15 +7,15 @@ import { navigation, siteConfig } from "@/lib/site";
 
 export function Brand({ light = false }: { light?: boolean }) {
   return (
-    <Link href="/" className="inline-flex items-center gap-3" aria-label={`${siteConfig.name} home`}>
+    <Link href="/" className="inline-flex items-center gap-2.5" aria-label={`${siteConfig.name} home`}>
       <span
         aria-hidden="true"
-        className="grid h-10 w-10 place-items-center rounded-[13px] bg-gradient-to-br from-blue-500 to-indigo-700 shadow-[0_8px_22px_rgba(23,92,255,.3)]"
+        className={`grid h-9 w-9 place-items-center rounded-[3px] ${light ? "bg-white/20" : "bg-[var(--teal)]"}`}
       >
-        <span className="h-4 w-4 rounded-full border-[3px] border-white shadow-[0_0_0_4px_rgba(255,255,255,.22)]" />
+        <span className="h-2.5 w-2.5 rounded-full border-2 border-white" />
       </span>
-      <span className={`text-[17px] font-extrabold tracking-[-0.025em] ${light ? "text-white" : "text-[#0b1d3b]"}`}>
-        Northstar<span className={light ? "text-blue-300" : "text-blue-600"}> Connect</span>
+      <span className={`display-font text-[1.05rem] font-bold tracking-[-0.03em] ${light ? "text-white" : "text-[var(--ink)]"}`}>
+        {siteConfig.name}
       </span>
     </Link>
   );
@@ -24,9 +24,10 @@ export function Brand({ light = false }: { light?: boolean }) {
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const solid = scrolled || open;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 16);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -34,31 +35,44 @@ export function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-all ${
-        scrolled ? "border-slate-200/90 bg-white/95 shadow-[0_10px_35px_rgba(12,32,70,.08)] backdrop-blur-xl" : "border-transparent bg-white/70 backdrop-blur-lg"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors ${
+        solid ? "border-b border-[var(--line)] bg-[var(--foam)]/95 backdrop-blur-md" : "border-b border-transparent bg-transparent"
       }`}
     >
-      <div className="container-shell flex h-[76px] items-center justify-between">
-        <Brand />
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
+      <div className="container-shell flex h-[72px] items-center justify-between">
+        <Brand light={!solid} />
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
           {navigation.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm font-semibold text-slate-600 transition hover:text-blue-600">
+            <a
+              key={item.href}
+              href={item.href}
+              className={`text-sm font-semibold transition ${
+                solid ? "text-[var(--ink-soft)] hover:text-[var(--teal)]" : "text-white/80 hover:text-white"
+              }`}
+            >
               {item.label}
             </a>
           ))}
         </nav>
-        <div className="hidden items-center gap-4 md:flex">
-          <a href={siteConfig.phoneHref} className="group text-right" aria-label={`Call us on ${siteConfig.phoneDisplay}`}>
-            <span className="block text-[10px] font-bold uppercase tracking-[.12em] text-slate-500">Freephone advice</span>
-            <span className="block font-extrabold tracking-tight text-slate-900 group-hover:text-blue-600">{siteConfig.phoneDisplay}</span>
+        <div className="hidden items-center gap-5 md:flex">
+          <a href={siteConfig.phoneHref} className="text-right" aria-label={`Call us on ${siteConfig.phoneDisplay}`}>
+            <span className={`block text-[11px] font-semibold uppercase tracking-[0.14em] ${solid ? "text-[var(--muted)]" : "text-white/60"}`}>
+              Freephone
+            </span>
+            <span className={`display-font block text-lg font-bold tracking-[-0.03em] ${solid ? "text-[var(--ink)]" : "text-white"}`}>
+              {siteConfig.phoneDisplay}
+            </span>
           </a>
-          <a href={siteConfig.phoneHref} className="primary-button !min-h-11 !rounded-xl !px-4 text-sm">
-            <PhoneIcon className="h-4 w-4" /> Call now
+          <a href={siteConfig.phoneHref} className="call-button !min-h-11 !px-4 text-sm">
+            <PhoneIcon className="h-4 w-4" />
+            Call now
           </a>
         </div>
         <button
           type="button"
-          className="grid h-11 w-11 place-items-center rounded-xl border border-slate-200 bg-white md:hidden"
+          className={`grid h-11 w-11 place-items-center rounded-[3px] border md:hidden ${
+            solid ? "border-[var(--line)] bg-white text-[var(--ink)]" : "border-white/25 bg-white/10 text-white"
+          }`}
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -68,15 +82,21 @@ export function Header() {
         </button>
       </div>
       {open && (
-        <nav id="mobile-menu" aria-label="Mobile navigation" className="border-t border-slate-200 bg-white px-5 py-5 shadow-xl md:hidden">
+        <nav id="mobile-menu" aria-label="Mobile navigation" className="border-t border-[var(--line)] bg-[var(--foam)] px-5 py-5 md:hidden">
           <div className="mx-auto flex max-w-lg flex-col gap-1">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-xl px-3 py-3 font-semibold text-slate-700 hover:bg-slate-50">
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="rounded-[3px] px-3 py-3 font-semibold text-[var(--ink-soft)] hover:bg-[var(--mist)]"
+              >
                 {item.label}
               </a>
             ))}
-            <a href={siteConfig.phoneHref} className="primary-button mt-3">
-              <PhoneIcon className="h-5 w-5" /> Call {siteConfig.phoneDisplay}
+            <a href={siteConfig.phoneHref} className="call-button mt-3">
+              <PhoneIcon className="h-5 w-5" />
+              Call {siteConfig.phoneDisplay}
             </a>
           </div>
         </nav>

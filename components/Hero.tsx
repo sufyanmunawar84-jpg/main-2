@@ -1,91 +1,52 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import {
-  ArrowRightIcon,
-  CheckCircleIcon,
-  PhoneIcon,
-  ShieldCheckIcon,
-  SignalIcon,
-  WifiIcon,
-} from "@heroicons/react/24/outline";
+import { PhoneIcon } from "@heroicons/react/24/outline";
 import { siteConfig } from "@/lib/site";
-
-const assurances = ["No-obligation guidance", "Independent UK specialists", "Mobile & broadband support"];
 
 export function Hero() {
   return (
-    <section className="mesh-bg relative overflow-hidden pb-18 pt-31 sm:pt-36 lg:pb-25 lg:pt-44">
-      <div aria-hidden="true" className="grid-bg absolute inset-0" />
-      <div className="container-shell relative grid items-center gap-15 lg:grid-cols-[1.03fr_.97fr]">
-        <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-          <div className="eyebrow">
-            <ShieldCheckIcon className="h-4 w-4 text-blue-600" />
-            Independent UK connectivity experts
-          </div>
-          <h1 className="mt-6 max-w-[700px] text-[clamp(2.75rem,6vw,5.3rem)] font-extrabold leading-[.98] tracking-[-.06em] text-[#081b3b]">
-            Find a better way to <span className="text-gradient">stay connected.</span>
-          </h1>
-          <p className="mt-6 max-w-[650px] text-lg leading-8 text-slate-600 sm:text-xl">
-            Clear, independent guidance on mobile, SIM-only, broadband and business connectivity options available across the UK.
+    <section className="relative isolate min-h-[100svh] overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="/hero-call.jpg"
+          alt="Person taking a calm phone call in soft morning light"
+          fill
+          priority
+          sizes="100vw"
+          className="hero-kenburns object-cover object-[center_30%]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[linear-gradient(105deg,rgba(8,28,26,0.88)_0%,rgba(8,28,26,0.72)_42%,rgba(8,28,26,0.28)_100%)]"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_40%,rgba(13,122,114,0.22),transparent_55%)]"
+        />
+      </div>
+
+      <div className="container-shell relative flex min-h-[100svh] flex-col justify-end pb-16 pt-28 sm:justify-center sm:pb-24 sm:pt-32">
+        <div className="max-w-xl text-white">
+          <p className="display-font animate-rise text-[clamp(2.6rem,7vw,4.75rem)] font-bold leading-[0.95] tracking-[-0.045em]">
+            {siteConfig.name}
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href={siteConfig.phoneHref} className="primary-button text-base sm:px-6" aria-label={`Call an advisor on ${siteConfig.phoneDisplay}`}>
+          <h1 className="display-font animate-rise-delay-1 mt-5 text-[clamp(1.55rem,3.4vw,2.35rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-white/95">
+            Clearer mobile and broadband choices — start with one freephone call.
+          </h1>
+          <p className="animate-rise-delay-2 mt-5 max-w-md text-base leading-7 text-white/78 sm:text-lg sm:leading-8">
+            Independent UK specialists help you understand the options that fit your usage, location and budget.
+          </p>
+          <div className="animate-rise-delay-3 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a
+              href={siteConfig.phoneHref}
+              className="call-button call-pulse text-base sm:px-7"
+              aria-label={`Call an advisor on ${siteConfig.phoneDisplay}`}
+            >
               <PhoneIcon className="h-5 w-5" />
               Call {siteConfig.phoneDisplay}
             </a>
-            <a href="#services" className="secondary-button text-base sm:px-6">
-              Compare plan types <ArrowRightIcon className="h-4 w-4" />
-            </a>
+            <p className="text-sm text-white/65 sm:pl-2">{siteConfig.hours}</p>
           </div>
-          <p className="mt-3 text-xs text-slate-500">Calls are free from UK landlines and mobiles. Opening hours apply.</p>
-          <ul className="mt-7 flex flex-wrap gap-x-5 gap-y-3" aria-label="Service assurances">
-            {assurances.map((item) => (
-              <li key={item} className="flex items-center gap-2 text-sm font-semibold text-slate-600">
-                <CheckCircleIcon className="h-5 w-5 text-blue-600" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, x: 20 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 0.7, delay: 0.12 }}
-          className="relative mx-auto w-full max-w-[540px]"
-        >
-          <div className="absolute -inset-9 rounded-full bg-blue-300/20 blur-3xl" />
-          <div className="glass-card relative overflow-hidden rounded-[32px] p-3 sm:p-5">
-            <Image
-              src="/connectivity-visual.svg"
-              alt="Abstract illustration of connected mobile, home and business services"
-              width={700}
-              height={590}
-              priority
-              className="h-auto w-full rounded-[23px]"
-            />
-            <div className="absolute left-1 top-[23%] flex items-center gap-3 rounded-2xl border border-white/80 bg-white/90 p-3 shadow-xl backdrop-blur sm:-left-4">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue-50 text-blue-600">
-                <SignalIcon className="h-5 w-5" />
-              </span>
-              <span>
-                <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Mobile plans</span>
-                <span className="text-sm font-extrabold text-slate-800">Options compared</span>
-              </span>
-            </div>
-            <div className="absolute bottom-[9%] right-1 flex items-center gap-3 rounded-2xl border border-white/80 bg-white/90 p-3 shadow-xl backdrop-blur sm:-right-4">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-violet-50 text-violet-600">
-                <WifiIcon className="h-5 w-5" />
-              </span>
-              <span>
-                <span className="block text-[10px] font-bold uppercase tracking-wider text-slate-400">Home broadband</span>
-                <span className="text-sm font-extrabold text-slate-800">Advice made simple</span>
-              </span>
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

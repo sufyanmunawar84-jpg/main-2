@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Northstar Connect — independent UK connectivity guidance";
+export const alt = "Northstar Connect — call for independent UK connectivity guidance";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,19 +16,31 @@ export default function OpenGraphImage() {
           justifyContent: "center",
           padding: 78,
           color: "white",
-          background: "linear-gradient(135deg, #07142f 0%, #0d48be 60%, #6b45d8 100%)",
-          fontFamily: "Arial, sans-serif",
+          background: "linear-gradient(135deg, #0b1f1e 0%, #0a5c56 55%, #0d7a72 100%)",
+          fontFamily: "Georgia, serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 30, fontWeight: 800 }}>
-          <div style={{ width: 52, height: 52, borderRadius: 16, background: "#2870ff", border: "8px solid rgba(255,255,255,.85)" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 28, fontWeight: 700 }}>
+          <div
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 4,
+              background: "#c45c26",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div style={{ width: 12, height: 12, borderRadius: 999, border: "3px solid white" }} />
+          </div>
           Northstar Connect
         </div>
-        <div style={{ marginTop: 62, maxWidth: 940, fontSize: 76, fontWeight: 800, lineHeight: 1.03, letterSpacing: "-3px" }}>
-          A clearer way to compare connectivity.
+        <div style={{ marginTop: 56, maxWidth: 920, fontSize: 68, fontWeight: 700, lineHeight: 1.05, letterSpacing: "-2px" }}>
+          Call for clearer connectivity choices.
         </div>
-        <div style={{ marginTop: 32, color: "#c9d9f7", fontSize: 28 }}>
-          Independent UK mobile &amp; broadband guidance
+        <div style={{ marginTop: 28, color: "#b7e0db", fontSize: 26 }}>
+          Independent UK mobile &amp; broadband guidance — freephone
         </div>
       </div>
     ),

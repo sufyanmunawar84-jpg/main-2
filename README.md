@@ -1,6 +1,6 @@
 # Northstar Connect
 
-Premium, responsive lead-generation landing page for an independent UK telecom comparison and advisory service.
+Call-only landing page for an independent UK telecom comparison and advisory service. The primary conversion path is freephone — no lead forms.
 
 ## Local development
 
@@ -23,8 +23,8 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Architecture
 
 - `app/` — Next.js App Router pages, metadata, sitemap and robots
-- `components/` — reusable landing-page and conversion components
+- `components/` — landing-page sections and call conversion tools
 - `lib/site.ts` — central business and contact configuration
-- `public/` — original, non-branded visual assets
+- `public/` — visual assets including the full-bleed hero photograph
 
 The site intentionally uses no provider logos, copied brand assets, fabricated reviews or unsubstantiated performance statistics.

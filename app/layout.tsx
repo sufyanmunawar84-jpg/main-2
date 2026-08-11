@@ -1,21 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
+import { Bricolage_Grotesque, Figtree } from "next/font/google";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
+const display = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const body = Figtree({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Compare Mobile & Broadband Options | Northstar Connect",
+    default: "Call for Mobile & Broadband Guidance | Northstar Connect",
     template: "%s | Northstar Connect",
   },
   description: siteConfig.description,
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Independent Mobile & Broadband Guidance",
+    title: "Call for independent UK connectivity guidance",
     description: siteConfig.description,
     url: "/",
     siteName: siteConfig.name,
@@ -24,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Independent Mobile & Broadband Guidance",
+    title: "Call for independent UK connectivity guidance",
     description: siteConfig.description,
   },
   robots: {
@@ -43,13 +52,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#07142f",
+  themeColor: "#0b1f1e",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" data-scroll-behavior="smooth" className={`${inter.variable} ${manrope.variable}`}>
-      <body style={{ fontFamily: "var(--font-inter), sans-serif" }}>{children}</body>
+    <html lang="en-GB" data-scroll-behavior="smooth" className={`${display.variable} ${body.variable}`}>
+      <body className="body-font antialiased">{children}</body>
     </html>
   );
 }

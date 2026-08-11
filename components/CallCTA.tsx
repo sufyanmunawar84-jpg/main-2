@@ -1,29 +1,26 @@
-import { ArrowRightIcon, ClockIcon, PhoneIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import { PhoneIcon } from "@heroicons/react/24/outline";
 import { siteConfig } from "@/lib/site";
 
 export function CallCTA() {
   return (
-    <section id="call-us" className="px-3 py-5 sm:px-5 sm:py-8">
-      <div className="dark-panel relative mx-auto max-w-[1260px] overflow-hidden rounded-[32px] px-6 py-14 sm:px-10 lg:py-20">
-        <div aria-hidden="true" className="absolute -right-22 -top-32 h-96 w-96 rounded-full border-[60px] border-white/[.04]" />
-        <div className="relative mx-auto max-w-3xl text-center">
-          <span className="eyebrow !border-white/15 !bg-white/10 !text-blue-100">Need help choosing?</span>
-          <h2 className="mt-5 text-[clamp(2.3rem,5vw,4.3rem)] font-extrabold leading-[1.02] tracking-[-.05em] text-white">
-            Talk to an independent telecom specialist.
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-            Tell us what matters to you. We’ll help make the available mobile and broadband options easier to understand.
-          </p>
-          <a href={siteConfig.phoneHref} className="mt-8 inline-flex min-h-16 items-center justify-center gap-3 rounded-2xl bg-white px-7 text-lg font-extrabold text-blue-700 shadow-2xl transition hover:-translate-y-1">
-            <PhoneIcon className="h-6 w-6" />
-            Call {siteConfig.phoneDisplay}
-            <ArrowRightIcon className="h-5 w-5" />
-          </a>
-          <div className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-slate-300">
-            <span className="flex items-center gap-2"><ClockIcon className="h-4 w-4" /> Mon–Fri 8am–8pm, Sat 9am–5pm</span>
-            <span className="flex items-center gap-2"><ShieldCheckIcon className="h-4 w-4" /> No-obligation conversation</span>
-          </div>
-        </div>
+    <section id="call-us" className="relative overflow-hidden bg-[var(--ink)] px-4 py-20 sm:py-24">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(13,122,114,0.35),transparent_50%),radial-gradient(ellipse_at_90%_100%,rgba(196,92,38,0.18),transparent_40%)]"
+      />
+      <div className="container-shell relative max-w-3xl text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#7ecbc4]">Ready when you are</p>
+        <h2 className="display-font mt-4 text-[clamp(2.2rem,5vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.045em] text-white">
+          Talk to an independent telecom specialist.
+        </h2>
+        <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-white/70">
+          Freephone from UK landlines and mobiles. Opening hours apply. No obligation to proceed.
+        </p>
+        <a href={siteConfig.phoneHref} className="call-button-light mt-8 text-lg">
+          <PhoneIcon className="h-6 w-6 text-[var(--copper)]" />
+          Call {siteConfig.phoneDisplay}
+        </a>
+        <p className="mt-5 text-sm text-white/55">{siteConfig.hours}</p>
       </div>
     </section>
   );
