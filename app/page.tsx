@@ -1,5 +1,4 @@
 import { CallCTA } from "@/components/CallCTA";
-import { Confidence } from "@/components/Confidence";
 import { ConversionTools } from "@/components/ConversionTools";
 import { FAQ, faqSchemaItems } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
@@ -7,7 +6,6 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Process } from "@/components/Process";
 import { Services } from "@/components/Services";
-import { TrustBar } from "@/components/TrustBar";
 import { WhyUs } from "@/components/WhyUs";
 import { siteConfig } from "@/lib/site";
 
@@ -34,7 +32,7 @@ export default function Home() {
       },
       {
         "@type": "Service",
-        name: "Independent UK telecom comparison and advisory service",
+        name: "Independent UK telecom comparison by phone",
         provider: { "@id": `${siteConfig.url}/#organization` },
         areaServed: { "@type": "Country", name: "United Kingdom" },
         serviceType: ["Mobile plan comparison", "Broadband guidance", "Business connectivity guidance"],
@@ -52,17 +50,18 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TrustBar />
         <Services />
-        <WhyUs />
         <Process />
-        <Confidence />
+        <WhyUs />
         <FAQ />
         <CallCTA />
       </main>
       <Footer />
       <ConversionTools />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }}
+      />
     </>
   );
 }
